@@ -1,13 +1,13 @@
 function five_in_a_row
-%图形界面初始化：
+%图形界面初始化：Initialize GUI(Graphical User Interface)
     axis equal
     axis([-10,10,-10,10])
     set(gca,'xtick',[],'ytick',[],'xcolor','w','ycolor','w')
     set(gca,'color',[0.8392,0.7216,0.3804])
     hold on
-%按键函数初始化设置：
+%按键函数初始化设置：Initialize the function of button
     set(gcf,'WindowButtonDownFcn',@buttondown)
-%全局变量：
+%全局变量：Define global variables
 global winner;
 global turn;
 global checher_board
@@ -20,13 +20,13 @@ global plotpostion;
 
 init()
     function init(~,~)
-        %初始化前清除原有图像：
+        %初始化前清除原有图像：Remove original images before initialization 
         delete(findobj('tag','piece'));
         delete(findobj('tag','redcross'));
         delete(findobj('type','line'));
         delete(findobj('type','patch'));
         
-        %棋盘绘制：
+        %棋盘绘制：Plot chessboard
         x1=[-9,-9,-8,-8,-7,-7,-6,-6,-5,-5,-4,-4,-3,-3,-2,-2,-1,-1,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9];
         y1=[-9,9,9,-9,-9,9,9,-9,-9,9,9,-9,-9,9,9,-9,-9,9,9,-9,-9,9,9,-9,-9,9,9,-9,-9,9,9,-9,-9,9,9,-9,-9,9];
         x2=[-9,9,9,-9,-9];y2=[9,9,-9,-9,9];x3=[-9.2,9.2,9.2,-9.2,-9.2];y3=[9.2,9.2,-9.2,-9.2,9.2];
@@ -35,13 +35,13 @@ init()
         plot(x2,y2,'k','LineWidth',2)
         plot(x3,y3,'k'),scatter(gca,x4,y4,30,'k','filled')
         
-        %棋子棋盘数值初始化：
+        %棋子棋盘数值初始化：Initialize chessboard and chess pieces
         winner=0;postion=[0 0];turn=1;
         black=[20,20];white=[-20,-20];
         black(1,:)=[];white(1,:)=[];
         checher_board=zeros(19,19);
         
-        %绘制函数初始化：
+        %绘制函数初始化：Initialize the plot function
         plotblack=scatter(gca,black(:,1),black(:,2),150,'k','filled','tag','piece');
         plotwhite=scatter(gca,white(:,1),white(:,2),150,'w','filled','tag','piece');
         plotpostion=scatter(gca,postion(1,1),postion(1,2),150,'rx','tag','redcross');
